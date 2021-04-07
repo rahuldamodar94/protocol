@@ -428,7 +428,7 @@ export class SamplerOperations {
         pool: CurveInfo,
         fromTokenIdx: number,
         toTokenIdx: number,
-        makerFillAmounts: BigNumber[]
+        makerFillAmounts: BigNumber[],
     ): SourceQuoteOperation<CurveFillData> {
         return new SamplerContractOperation({
             source: ERC20BridgeSource.Smoothy,
@@ -1127,12 +1127,7 @@ export class SamplerOperations {
                         case ERC20BridgeSource.Shell:
                         case ERC20BridgeSource.Component:
                             return getShellLikeInfosForPair(this.chainId, takerToken, makerToken, source).map(pool =>
-                                this.getShellSellQuotes(
-                                    pool,
-                                    makerToken,
-                                    takerToken,
-                                    takerFillAmounts,
-                                    source),
+                                this.getShellSellQuotes(pool, makerToken, takerToken, takerFillAmounts, source),
                             );
                         case ERC20BridgeSource.LiquidityProvider:
                             return getLiquidityProvidersForPair(
@@ -1335,12 +1330,7 @@ export class SamplerOperations {
                         case ERC20BridgeSource.Shell:
                         case ERC20BridgeSource.Component:
                             return getShellLikeInfosForPair(this.chainId, takerToken, makerToken, source).map(pool =>
-                                this.getShellBuyQuotes(
-                                    pool,
-                                    makerToken,
-                                    takerToken,
-                                    makerFillAmounts,
-                                    source),
+                                this.getShellBuyQuotes(pool, makerToken, takerToken, makerFillAmounts, source),
                             );
                         case ERC20BridgeSource.LiquidityProvider:
                             return getLiquidityProvidersForPair(
